@@ -1,0 +1,17 @@
+.auth__login-move {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #ffff;
+    display: block;
+    min-height: 29px;
+    max-width: 358px;
+    text-align: center;
+    transition: 0.3s linear;
+    text-decoration: none;
+}
+
+.auth__login-move:hover {
+    opacity: 80%;
+    cursor: pointer;
+}

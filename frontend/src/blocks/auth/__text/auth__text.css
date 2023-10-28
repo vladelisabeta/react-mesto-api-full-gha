@@ -1,0 +1,14 @@
+.auth__text {
+    max-width: 358px;
+    line-height: 120%;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .auth__text {
+        font-size: 14px;
+        line-height: 120%;
+    }
+}

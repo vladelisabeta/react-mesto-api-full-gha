@@ -1,0 +1,7 @@
+.popup__image-opened {
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  
+}
