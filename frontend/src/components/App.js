@@ -86,6 +86,7 @@ function App() {
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
+        setEmail(email)
         navigate('/')
       })
       .catch((err) => {
@@ -97,6 +98,7 @@ function App() {
   function logOut() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    setEmail('')
   }
 
 
@@ -143,7 +145,8 @@ function App() {
 
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    // const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
