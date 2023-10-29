@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
@@ -20,8 +21,10 @@ mongoose.connect(MONGOHOST, {
 
 const app = express();
 
-app.use(express.json());
+app.use(cors());
 app.use(helmet());
+
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // логин login

@@ -6,7 +6,8 @@ const JWT_SECRET = 'very very very very secrety secret';
 module.exports.auth = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    throw new UnauthorizedError('Необходима авторизация');
+    next(new UnauthorizedError('Вот дальше этого места ты не пройдешь!'));
+    return;
   }
 
   const token = authorization.replace('Bearer ', '');

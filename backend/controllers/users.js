@@ -121,10 +121,15 @@ module.exports.login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+
+      console.log('ХОТЕЛ ТОКЕН ДА?? А ИЗ ЛОГИНА ОН НЕ ИДЕТ');
       res.send({ token });
+      console.log({ token }, 'токен в логине на отправку');
+      // res.send(token);
     })
-    // .catch(next);
-    .catch((e) => {
-      next(e);
-    });
+    .catch(next);
+  // .catch((e) => {
+  //   console.log(e, 'this is token in login');
+  //   next(e);
+  // });
 };
