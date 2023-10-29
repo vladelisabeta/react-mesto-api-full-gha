@@ -30,6 +30,21 @@ function App() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      api.getToken();
+      Promise.all([api.getUserProfile(), api.getInitialCards()])
+        .then(([myProfile, initialCards]) => {
+          setCurrentUser(myProfile);
+          setCards(initialCards);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => { });
+    }
+  }, [isLoggedIn]);
+
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -39,7 +54,8 @@ function App() {
         .then((res) => {
           setIsLoggedIn(true);
           navigate("/");
-          setEmail(res.data.email)
+          // setEmail(res.data.email)
+          setEmail(res.email)
         })
         .catch((err) => {
           console.log(err)
@@ -124,7 +140,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  
+
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);

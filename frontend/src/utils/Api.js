@@ -1,3 +1,5 @@
+import { BASE_URL } from "./auth.js";
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._headers = headers
@@ -85,6 +87,7 @@ class Api {
   }
 
 
+
   updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
@@ -96,12 +99,24 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
+  getToken() {
+    this._headers.authorization = `Bearer ${localStorage.getItem('jwt')}`;
+  }
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+  baseUrl: BASE_URL,
   headers: {
-    authorization: '164f802e-3ded-431e-9f1e-8df3253cf571',
     'Content-Type': 'application/json'
   }
 });
+
+
+
+// export const api = new Api({
+//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-54',
+//   headers: {
+//     authorization: '164f802e-3ded-431e-9f1e-8df3253cf571',
+//     'Content-Type': 'application/json'
+//   }
+// });
