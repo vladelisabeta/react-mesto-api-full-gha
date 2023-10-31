@@ -72,7 +72,7 @@
 
 /* импорт для апдейт аватар */
 @import url(./blocks/popup/__container/_upload-avatar/popup__container_upload-avatar.css);
-@import url(./blocks/popup/__save/_upload-avatar/popup__save_upload-avatar);
+@import url(./blocks/popup/__save/_upload-avatar/popup__save_upload-avatar.css);
 @import url(./blocks/popup/__button-close/_upload-avatar/popup__button-close_upload-avatar.css);
 @import url(./blocks/popup/__text/_upload-avatar/popup__text_upload-avatar.css);
 
