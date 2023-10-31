@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -8,6 +9,7 @@ const bodyParser = require('body-parser');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const errorHandler = require('./middlewares/error-handler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { urlRegex } = require('./utils/consts');
@@ -27,6 +29,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(requestLogger);
 // логин login
 app.post(
   '/signin',
@@ -58,6 +61,7 @@ app.use(auth);
 
 app.use(userRouter);
 app.use(cardRouter);
+app.use(errorLogger);
 app.use(errors());
 
 // ошибка такой страницы не существует
