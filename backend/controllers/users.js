@@ -3,17 +3,17 @@ const jwt = require('jsonwebtoken');
 const {
   HTTP_STATUS_OK,
   HTTP_STATUS_CREATED,
-  // HTTP_STATUS_CONFLICT,
 } = require('http2').constants;
 const User = require('../models/user');
 const ConflictError = require('../errors/ConflictError');
 const NotFoundError = require('../errors/NotFoundError');
-// const UnauthorizedError = require('../errors/UnauthorizedError');
 const BadRequestError = require('../errors/BadRequestError');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const SALT_TIMES = 10;
 const DB_DUPLCATE_ERROR_CODE = 11000;
-const JWT_SECRET = 'very very very very secrety secret';
+// const JWT_SECRET = 'very very very very secrety secret';
 
 // GET USERS ПОФИКСИТЬ
 module.exports.getUsers = (req, res, next) => User.find({})
@@ -120,7 +120,7 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
 
       console.log('ХОТЕЛ ТОКЕН ДА?? А ИЗ ЛОГИНА ОН НЕ ИДЕТ');
       res.send({ token });
