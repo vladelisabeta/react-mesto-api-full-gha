@@ -9,7 +9,7 @@
   right: 0;
   top: 0;
   margin-top: 20px;
-  transition: linear 0.3s;
+  transition: opacity 0.3s linear;
 }
 
 .card__trash:hover {
