@@ -1,5 +1,5 @@
-// export const BASE_URL = 'https://auth.nomoreparties.co'
-export const BASE_URL = "http://localhost:3000"
+// export const BASE_URL = "http://localhost:3000"
+export const BASE_URL = 'https://mesto.vladelisabeta.nomoredomainsrocks.ru/signin'
 // env сюда вписать 
 
 export function checkResponse(res) {
