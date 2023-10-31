@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.mesto.vladelisabeta.nomoredomainsrocks.ru/signin'
+export const BASE_URL = 'https://api.mesto.vladelisabeta.nomoredomainsrocks.ru'
 
 export function checkResponse(res) {
     if (res.ok) {
