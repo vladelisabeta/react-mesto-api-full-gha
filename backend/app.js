@@ -30,7 +30,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-//краш тест проверка сервера
+
+// краш тест проверка сервера
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
