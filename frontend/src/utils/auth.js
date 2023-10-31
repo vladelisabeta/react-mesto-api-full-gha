@@ -1,6 +1,4 @@
-// export const BASE_URL = "http://localhost:3000"
-export const BASE_URL = 'https://mesto.vladelisabeta.nomoredomainsrocks.ru/signin'
-// env сюда вписать 
+export const BASE_URL = 'https://api.mesto.vladelisabeta.nomoredomainsrocks.ru/signin'
 
 export function checkResponse(res) {
     if (res.ok) {
