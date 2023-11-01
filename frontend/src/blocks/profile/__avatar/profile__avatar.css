@@ -14,7 +14,7 @@
 }
 
 .profile__avatar:hover {
-  opacity: 20%;
+  opacity: 0.2;
   cursor: pointer;
   background-size: cover;
 }
