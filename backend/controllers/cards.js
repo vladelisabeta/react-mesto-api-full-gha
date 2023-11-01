@@ -14,6 +14,7 @@ module.exports.createCard = (req, res, next) => {
 
   return Card.create({ name, link, owner: req.user._id })
     .then((r) => res.status(HTTP_STATUS_CREATED).send(r))
+    .populate('owner')
     .catch((e) => {
       if (e.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
