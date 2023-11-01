@@ -29,7 +29,7 @@ module.exports.getCards = (req, res, next) => Card.find({})
 
 module.exports.deleteCardById = (req, res, next) => {
   const { cardId } = req.params;
-  return Card.findById(cardId).orFail(new NotFoundError('Такой карточки не существует!'))
+  return Card.findById(cardId)
     .then((r) => {
       if (r === null) {
         throw new NotFoundError('Карточка не найдена!');

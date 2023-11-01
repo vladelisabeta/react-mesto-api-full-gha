@@ -70,13 +70,14 @@ app.use(auth);
 
 app.use(userRouter);
 app.use(cardRouter);
-app.use(errorLogger);
-app.use(errors());
 
 // ошибка такой страницы не существует
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Такой страницы не существует'));
 });
+
+app.use(errorLogger);
+app.use(errors());
 
 // централизированные ошибки
 
