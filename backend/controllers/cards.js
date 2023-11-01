@@ -13,6 +13,7 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   return Card.create({ name, link, owner: req.user._id })
+    .populate('owner')
     .then((r) => res.status(HTTP_STATUS_CREATED).send(r))
     .catch((e) => {
       if (e.name === 'ValidationError') {
@@ -24,6 +25,7 @@ module.exports.createCard = (req, res, next) => {
 };
 
 module.exports.getCards = (req, res, next) => Card.find({})
+  .populate(['owner', 'likes'])
   .then((r) => res.status(HTTP_STATUS_OK).send(r))
   .catch(next);
 
@@ -56,6 +58,7 @@ module.exports.likeCard = (req, res, next) => Card.findByIdAndUpdate(
   { $addToSet: { likes: req.user._id } },
   { new: true },
 )
+  .populate(['owner', 'likes'])
   .then((r) => {
     if (r === null) {
       throw new NotFoundError('Карточка не найдена!');
@@ -77,6 +80,7 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((r) => {
       if (r === null) {
         throw new NotFoundError('Карточка не найдена!');
